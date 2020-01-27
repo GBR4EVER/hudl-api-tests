@@ -17,7 +17,7 @@ def id_generator(size=9, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-def get_valid_schedule():
+def post_valid_schedule():
     uniqueId = str(uuid.uuid4())
     uniqueSqlId = random.randint(1, 100000)
     print(uniqueId)
@@ -33,4 +33,10 @@ def get_valid_schedule():
         isHome=True,
         gameType="0",
         categoryDetailsList=categoryDetails
+    )
+
+
+def get_valid_schedule():
+    return Schedule(
+        gameId="1234567"
     )

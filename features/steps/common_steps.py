@@ -9,8 +9,8 @@ local = "http://localhost:8000"
 host = local
 
 
-@when('I post to the API')
-def i_post_to_the_api(context):
+@when('I call to post to the API')
+def i_call_to_post_to_the_api(context):
     url = host + "/v1/schedule-api"
     if 'auth-token' not in context:
         context.auth_token = get_auth_token()
@@ -20,6 +20,45 @@ def i_post_to_the_api(context):
         'Authorization': 'Bearer ' + context.auth_token
     }
     context.result = requests.request("POST", url, data=context.json_request, headers=headers, verify=False)
+
+
+@when('I call to get from the API')
+def i_call_to_get_from_the_api(context):
+    url = host + "/v1/schedule-api"
+    if 'auth-token' not in context:
+        context.auth_token = get_auth_token()
+    headers = {
+        'Content-Type': 'application/json',
+        'cache-control': 'no-cache',
+        'Authorization': 'Bearer ' + context.auth_token
+    }
+    context.result = requests.request("GET", url, data=context.json_request, headers=headers, verify=False)
+
+
+@when('I call to update to the API')
+def i_call__to_update_to_the_api(context):
+    url = host + "/v1/schedule-api"
+    if 'auth-token' not in context:
+        context.auth_token = get_auth_token()
+    headers = {
+        'Content-Type': 'application/json',
+        'cache-control': 'no-cache',
+        'Authorization': 'Bearer ' + context.auth_token
+    }
+    context.result = requests.request("PUT", url, data=context.json_request, headers=headers, verify=False)
+
+
+@when('I call to delete to the API')
+def i_call_to_delete_to_the_api(context):
+    url = host + "/v1/schedule-api"
+    if 'auth-token' not in context:
+        context.auth_token = get_auth_token()
+    headers = {
+        'Content-Type': 'application/json',
+        'cache-control': 'no-cache',
+        'Authorization': 'Bearer ' + context.auth_token
+    }
+    context.result = requests.request("DELETE", url, data=context.json_request, headers=headers, verify=False)
 
 
 def get_auth_token():
